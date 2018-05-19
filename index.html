@@ -1,0 +1,157 @@
+<!--  i am not following the module fashion since the verisons are not supporting that format
+
+ -->
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Github Viewer</title>
+	 <!-- we can also use script tag in this sense 
+ -->
+ <script src="lib/angular/angular.js" type="text/javascript" charset="utf-8" async defer></script>
+ <!-- <script src="lib/angular/angular-route.min.js" type="text/javascript" charset="utf-8" async defer></script>
+
+i am using without routing so commenting the angular-route.js file 
+ -->
+
+
+
+<!--  <script src="app.js" type="text/javascript"></script>	
+ -->
+<!-- 	
+	<script data-require="angular.js@*" data-semver="1.3.0-beta.5" src="https://code.angularjs.org/1.3.0-beta.5/angular.js"> </script> -->
+	<!-- <script src="app.js" type="text/javascript" charset="utf-8" async defer></script>
+	 -->
+	<script src="controllers/githubAPIController.js" type="text/javascript" charset="utf-8" async defer></script>
+	<!-- <script src="services/githubAPIService.js" type="text/javascript" charset="utf-8" async defer></script>
+	 -->
+	<!-- <script src="lib/angular/angular.min.js" type="text/javascript"></script>
+	<script src="lib/angular/angular-route.min.js" type="text/javascript"></script> 
+	 --><!-- <script src="lib/angular/angular.js" type="text/javascript" charset="utf-8" async defer></script>
+	 -->
+	<!-- <script data-require="angular.js@2.0.0" data-semver="2.0.0" src="https://code.angularjs.org/2.0.0-snapshot/angular2.js"></script> -->
+	<!-- <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+	 --><!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script> 
+	 -->
+<!-- <script type="text/javascript" src="lib/angular/angular-route.js"></script>
+ 	 -->
+
+
+<!-- 
+	<script src="controllers/basicCoding.js" type="text/javascript" charset="utf-8" async defer></script>
+	
+	<script src="controllers/controllerSyntax.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="controllers/avoidingGlobal(IIFE).js" type="text/javascript" charset="utf-8" async defer></script>
+	 --><!-- <script src="services/basicServiceSyntax.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="services/$httpservice.js" type="text/javascript" charset="utf-8" async defer></script>
+	 -->
+	<!-- <script src="services/githubAPIService.js" type="text/javascript" charset="utf-8" async defer></script>
+	 -->
+	
+</head>
+
+
+
+<body ng-controller="MainController" style="background-color: #999;padding: 3% 3% 10% 5%;">
+	<h1>{{message}}</h1>
+	<div>
+		{{ error }}
+	</div>
+	<!--<h1>{{100/20}}</h1>-->
+
+	<!-- //with the use of ng-model we can able to use the 2 way data binding 
+	 -->
+
+	 		<!-- ng-model will craete a property for me and give that scope a username 
+	 		 --	>
+	 		<!-- type = submit means it is an button
+	  		-->
+
+
+	{{ countdown }}
+
+	
+
+
+
+	<form name="Search-User" ng-submit="search(username)">
+		<input type="search" required placeholder="Username to find" ng-model="username" />
+		<input type="submit" value="Search"/>	
+		
+
+		
+	</form>
+
+<!-- 	<div ng-include="'userDetails.html'" ng-show="user"></div>
+my this cocnept  of  using the ng-include directive is not working or not supported by this version of the angular 
+ -->
+
+
+	<div ng-show="user" id="userDetails">
+			<h2>{{user.name}}</h2>
+			<img ng-src="{{user.avatar_url}}" alt="" title="{{user.name}}">
+		
+			Order:
+			
+			<select ng-model="repoSortOrder">
+				<option value="+name">Name</option>
+				<option value="-stargazers_count">Stars</option>
+				<option value="+language">Language</option>
+			</select>
+
+
+		</div>
+		
+
+
+		
+		<table ng-show="user">
+			<thead>
+			<tr>
+				<th>Name </th>
+				<th>Stars </th>
+				<th>Language </th>
+			</tr>
+			</thead> 
+			<!-- ng-repeat works as an for each loop similar to the csharp
+			 --> 
+			<tbody> 
+			<!--- where stargazers_count is the string literal that is the property which we are used 
+			in order to use the oderBy filter -->
+				<tr ng-repeat="repo in repos | orderBy:repoSortOrder">
+					<td>{{repo.name}}</td>
+					<td>{{repo.stargazers_count | number}}</td>
+					<td>{{repo.language}}</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	
+
+
+	
+
+
+
+
+
+
+
+ 	
+	<!-- <div>
+		<div>Name: {{user.name}}</div>
+		<div>Location: {{user.location}}</div>
+		
+
+		<div>
+		<img ng-src="{{user.avatar_url}}" title="{{user.name}}">
+		</div>		
+	 </div>-->
+
+
+	
+
+
+	
+</body>
+</html>
